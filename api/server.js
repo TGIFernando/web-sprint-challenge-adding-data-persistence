@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan')
 const cors = require('cors')
 const projectRouter = require('./project/router')
+const resourceRouter = require('./resource/router')
 
 
 
@@ -12,6 +13,7 @@ server.use(cors())
 server.use(morgan('dev'))
 server.use(express.json())
 server.use('/api/projects', projectRouter)
+server.use('/api/resources', resourceRouter)
 
 
 server.get('/', (_, res) => {
