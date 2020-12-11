@@ -17,5 +17,7 @@ async function get(){
 
 async function addProject(proj){
     const [id] = await db('projects').insert(proj);
-    return db('projects').where({id}).first()
+    const ah = await db('projects').where({id}).first()
+    const newProj = {...ah, completed:mappers.intToBoolean(ah.completed)}
+    return newProj
 }
