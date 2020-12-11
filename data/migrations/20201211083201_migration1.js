@@ -8,7 +8,7 @@ exports.up = function(knex) {
   })
     .createTable('resources', tbl=>{
         tbl.increments()
-        tbl.string('name', 128).notNullable()
+        tbl.string('name', 128).notNullable().unique()
         tbl.string('description', 128)
     })
     .createTable('tasks', tbl=>{
