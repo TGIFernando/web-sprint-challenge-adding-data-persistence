@@ -1,13 +1,18 @@
 // build your `Project` model here
 const db = require('../../data/dbConfig')
+const mappers = require('../../data/helpers/mappers')
 
 module.exports = {
     get,
     addProject
 }
 
-function get(){
-    return db('projects')
+async function get(){
+    const proj =  await db('projects')
+    const adjusted = proj.map(p => {
+        return {...p, completed: mappers.intToBoolean(p.completed)}
+    })
+    return(adjusted)
 }
 
 async function addProject(proj){
